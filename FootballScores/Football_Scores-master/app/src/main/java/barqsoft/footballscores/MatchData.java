@@ -134,7 +134,7 @@ public class MatchData {
             setTeamScore(resultJSON.getString("goalsAwayTeam"), away_team_id);
             // fix up the game time
             if (!our_team_score.equals("-1") && !opponent_team_score.equals("-1")) {
-                if (status.equals("FINISHED")) {
+                if (status.equals(context.getString(R.string.status_finished))) {
                     setMatch_time(context.getString(R.string.match_final_score));
                 } else {
                     setMatch_time(context.getString(R.string.match_in_progress));

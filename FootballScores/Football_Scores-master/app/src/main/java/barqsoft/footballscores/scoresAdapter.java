@@ -55,12 +55,12 @@ public class scoresAdapter extends CursorAdapter
         String matchtime = cursor.getString(COL_MATCHTIME);
         int home_goals = cursor.getInt(COL_HOME_GOALS);
         int away_goals = cursor.getInt(COL_AWAY_GOALS);
-        mHolder.score.setText(Utilies.getScores(home_goals,away_goals));
+        mHolder.score.setText(Utilies.getScores(context, home_goals,away_goals));
         mHolder.match_id = cursor.getDouble(COL_ID);
         mHolder.home_crest.setImageResource(Utilies.getTeamCrestByTeamName(
-                cursor.getString(COL_HOME)));
+                context, cursor.getString(COL_HOME)));
         mHolder.away_crest.setImageResource(Utilies.getTeamCrestByTeamName(
-                cursor.getString(COL_AWAY)));
+                context, cursor.getString(COL_AWAY)));
 
         StringBuilder sb = new StringBuilder();
         if ((home_goals < 0) || (away_goals < 0)) {
@@ -73,15 +73,15 @@ public class scoresAdapter extends CursorAdapter
         } else {
             // we have a score to report
             sb.append(home_name);
-            sb.append(context.getString(R.string.content_desciption_space));
+            sb.append(context.getString(R.string.content_description_space));
             sb.append(home_goals);
-            sb.append(context.getString(R.string.content_desciption_space));
+            sb.append(context.getString(R.string.content_description_space));
             sb.append(away_name);
-            sb.append(context.getString(R.string.content_desciption_space));
+            sb.append(context.getString(R.string.content_description_space));
             sb.append(away_goals);
-            sb.append(context.getString(R.string.content_desciption_space));
+            sb.append(context.getString(R.string.content_description_space));
             String status = cursor.getString(COL_STATUS);
-            if (status.equals("FINISHED")) {
+            if (status.equals(context.getString(R.string.status_finished))) {
                 sb.append(context.getString(R.string.match_final_score));
                 matchtime = context.getString(R.string.match_final_score);
             } else {
@@ -105,10 +105,10 @@ public class scoresAdapter extends CursorAdapter
             container.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                     , ViewGroup.LayoutParams.MATCH_PARENT));
             TextView match_day = (TextView) v.findViewById(R.id.matchday_textview);
-            match_day.setText(Utilies.getMatchDay(cursor.getInt(COL_MATCHDAY),
+            match_day.setText(Utilies.getMatchDay(context, cursor.getInt(COL_MATCHDAY),
                     cursor.getInt(COL_LEAGUE)));
             TextView league = (TextView) v.findViewById(R.id.league_textview);
-            league.setText(Utilies.getLeague(cursor.getInt(COL_LEAGUE)));
+            league.setText(Utilies.getLeague(context, cursor.getInt(COL_LEAGUE)));
             Button share_button = (Button) v.findViewById(R.id.share_button);
             share_button.setOnClickListener(new View.OnClickListener() {
                 @Override

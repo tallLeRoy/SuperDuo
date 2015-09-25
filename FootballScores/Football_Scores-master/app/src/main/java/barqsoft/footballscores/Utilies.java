@@ -1,5 +1,6 @@
 package barqsoft.footballscores;
 
+import android.content.Context;
 import android.os.Build;
 
 import java.net.MalformedURLException;
@@ -35,73 +36,73 @@ public class Utilies
 
     static final Map<String, TeamData> mapTeamData = new HashMap<String, TeamData>(40);
 
-    public static String getLeague(int league_num)
+    public static String getLeague(Context context, int league_num)
     {
         switch (league_num)
         {
-            case SERIE_A_14 : return "Seria A 2014/15";
-            case SERIE_A_15 : return "Seria A 2015/16";
-            case PREMIER_LEAGUE_14 : return "Premier League 2014/15";
-            case PREMIER_LEAGUE_15 : return "Premier League 2015/16";
-            case CHAMPIONS_LEAGUE_14 : return "UEFA Champions League 2014/15";
-            case PRIMERA_DIVISION_14 : return "Primera Division 2014/15";
-            case PRIMERA_DIVISION_15 : return "Primera Division 2015/16";
-            case BUNDESLIGA1_14 : return "1. Bundesliga 2014/15";
-            case BUNDESLIGA1_15 : return "1. Bundesliga 2015/16";
-            case BUNDESLIGA2_15 : return "2. Bundesliga 2015/16";
-            case BUNDESLIGA3_15 : return "3. Bundesliga 2015/16";
-            case LIGUE1_15 : return "Ligue 1 2015/16";
-            case LIGUE2_15 : return "Ligue 2 2015/16";
-            case SEGUNDA_DIVISION_15 : return "Segunda Division 2015/16";
-            case PRIMEIRA_LIGA_15 : return "Primeira Liga 2015/16";
-            case EREDIVISIE_15 : return "Eredivisie 2015/16";
-           default: return "Not known League Please report";
+            case SERIE_A_14 : return context.getResources().getString(R.string.serie_a_14);
+            case SERIE_A_15 : return context.getResources().getString(R.string.seria_a_15);
+            case PREMIER_LEAGUE_14 : return context.getResources().getString(R.string.premier_league_14);
+            case PREMIER_LEAGUE_15 : return context.getResources().getString(R.string.premier_league_15);
+            case CHAMPIONS_LEAGUE_14 : return context.getResources().getString(R.string.champions_league_14);
+            case PRIMERA_DIVISION_14 : return context.getResources().getString(R.string.primera_division_14);
+            case PRIMERA_DIVISION_15 : return context.getResources().getString(R.string.primera_division_15);
+            case BUNDESLIGA1_14 : return context.getResources().getString(R.string.bundesliga1_14);
+            case BUNDESLIGA1_15 : return context.getResources().getString(R.string.bundesliga1_15);
+            case BUNDESLIGA2_15 : return context.getResources().getString(R.string.bundesliga2_15);
+            case BUNDESLIGA3_15 : return context.getResources().getString(R.string.bundesliga3_15);
+            case LIGUE1_15 : return context.getResources().getString(R.string.ligue1_15);
+            case LIGUE2_15 : return context.getResources().getString(R.string.ligue2_15);
+            case SEGUNDA_DIVISION_15 : return context.getResources().getString(R.string.segunda_division_15);
+            case PRIMEIRA_LIGA_15 : return context.getResources().getString(R.string.primera_liga_15);
+            case EREDIVISIE_15 : return context.getResources().getString(R.string.eredivisie_15);
+           default: return context.getResources().getString(R.string.unknown_league);
         }
     }
-    public static String getMatchDay(int match_day,int league_num)
+    public static String getMatchDay(Context context, int match_day,int league_num)
     {
         if(league_num == CHAMPIONS_LEAGUE_14)
         {
             if (match_day <= 6)
             {
-                return "Group Stages, Matchday : 6";
+                return context.getResources().getString(R.string.matchday_6);
             }
             else if(match_day == 7 || match_day == 8)
             {
-                return "First Knockout round";
+                return context.getResources().getString(R.string.first_knockout);
             }
             else if(match_day == 9 || match_day == 10)
             {
-                return "QuarterFinal";
+                return context.getResources().getString(R.string.quarterfinal);
             }
             else if(match_day == 11 || match_day == 12)
             {
-                return "SemiFinal";
+                return context.getResources().getString(R.string.semifinal);
             }
             else
             {
-                return "Final";
+                return context.getResources().getString(R.string.matchday_final);
             }
         }
         else
         {
-            return "Matchday : " + String.valueOf(match_day);
+            return context.getResources().getString(R.string.matchday_) + String.valueOf(match_day);
         }
     }
 
-    public static String getScores(int home_goals,int awaygoals)
+    public static String getScores(Context context, int home_goals,int awaygoals)
     {
         if(home_goals < 0 || awaygoals < 0)
         {
-            return " - ";
+            return context.getResources().getString(R.string.score_seperator);
         }
         else
         {
-            return String.valueOf(home_goals) + " - " + String.valueOf(awaygoals);
+            return String.valueOf(home_goals) + context.getResources().getString(R.string.score_seperator) + String.valueOf(awaygoals);
         }
     }
 
-    public static int getTeamCrestByTeamName (String teamname)
+    public static int getTeamCrestByTeamName (Context context, String teamname)
     {
         if (teamname==null){return R.drawable.no_icon;}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
